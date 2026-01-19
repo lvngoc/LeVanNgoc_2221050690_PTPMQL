@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML JavaScript</title>
+</head>
+<body>
+    <h1>Lê Văn Ngọc - 2221050690</h1>
+    <h1>My First JavaScript</h1>
+    <p id="demo">Click me to display Date and Time</p>
+
+    <button onclick="document.getElementById('demo').innerHTML = Date()">
+        Click me
+    </button>
+
+    <hr>
+
+    <h2>The HTML &lt;script&gt; Tag</h2>
+
+    <p id="demo2"></p>
+
+    <script>
+        document.getElementById("demo2").innerHTML = "Hello JavaScript!";
+    </script>
+
+    <hr>
+
+    <h2>A Taste of JavaScript</h2>
+
+    <p id="demo3">Hello</p>
+
+    <h3>JavaScript can change content:</h3>
+    <script>
+        document.getElementById("demo3").innerHTML = "Hello JavaScript!";
+    </script>
+
+    <h3>JavaScript can change styles:</h3>
+    <script>
+        document.getElementById("demo3").style.fontSize = "25px";
+        document.getElementById("demo3").style.color = "red";
+        document.getElementById("demo3").style.backgroundColor = "yellow";
+    </script>
+
+    <h3>JavaScript can change attributes:</h3>
+    <img id="image" src="picture.gif">
+
+    <script>
+        document.getElementById("image").src = "picture.gif";
+    </script>
+
+    <hr>
+
+    <h2>The HTML &lt;noscript&gt; Tag</h2>
+
+    <script>
+        document.getElementById("demo4").innerHTML = "Hello JavaScript!";
+    </script>
+
+    <noscript>
+        Sorry, your browser does not support JavaScript!
+    </noscript>
+
+</body>
+</html>

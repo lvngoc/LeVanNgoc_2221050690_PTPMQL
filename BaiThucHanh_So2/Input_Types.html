@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Input Types </title>
+</head>
+<body>
+    <h2> LeVanNgoc_2221050690</h2>
+    <h3> Các kiểu dữ liệu đầu vào HTML</h3>
+    <form style=" width: 500px; height: 200px; border: 1px solid black;">
+     <h3>Loại đầu vào: Văn bản.</h3>
+     <p>"input type="text" định nghĩa một trường nhập văn bản một dòng :</p>
+      <label for="fname">First name:</label><br>
+      <input type="text" id="fname" name="fname"><br>
+      <label for="lname">Last name:</label><br>
+      <input type="text" id="lname" name="lname">
+    </form>
+    <br>
+     <form style=" width: 500px; height: 200px; border: 1px solid black;">
+        <h3>Loại đầu vào:  mật khẩu.</h3>
+        <p>"input type="password" định nghĩa một trường mật khẩu. Ký tự nhập vào sẽ bị ẩn:</p>
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="pwd">Password:</label><br>
+  <input type="password" id="pwd" name="pwd">
+</form>
+<br>
+<form action="/action_page.php" style=" width: 500px; height:250px; border: 1px solid black;">
+    <h3>Loại đầu vào: Nhập loại dữ liệu gửi đi.</h3>
+    <p>"input type="submit" định nghĩa một nút gửi để gửi biểu mẫu dữ liệu đến một trang xử lý biểu mẫu được chỉ định trong action  thuộc tính của form phần tử:</p>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="Ngọc"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Lê Văn"><br><br>
+  <input type="submit" value="Submit">
+</form>
+<br>
+<form action="/action_page.php" style=" width: 500px; height: 250px; border: 1px solid black;">
+    <h3>Loại đầu vào: Nút đặt lại.</h3>
+    <p>"input type="reset"định nghĩa một nút đặt lại để đặt lại tất cả các trường trong biểu mẫu về giá trị mặc định ban đầu:</p>
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="Ngọc"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Lê Văn"><br><br>
+  <input type="submit" value="Submit">
+  <input type="reset" value="Reset">
+</form>
+<br>
+<form style=" width: 500px; height: 200px; border: 1px solid black;">
+    <h3>Loại đầu vào: Nút radio.</h3>
+    <p>"input type="radio"định nghĩa một nút radio. Nút radio cho phép người dùng chọn 1 trong số các lựa chọn có hạn:</p>
+  <input type="radio" id="html" name="fav_language" value="HTML">
+  <label for="html">HTML</label><br>
+  <input type="radio" id="css" name="fav_language" value="CSS">
+  <label for="css">CSS</label><br>
+  <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+  <label for="javascript">JavaScript</label>
+</form>
+<br>
+<form style=" width: 500px; height: 200px; border: 1px solid black;">
+    <h3>Loại đầu vào: Hộp kiểm.</h3>
+    <p>"input type="checkbox"định nghĩa một hộp kiểm. Hộp kiểm cho phép người dụng chọn không hoặc nhiều tùy chọn:</p>
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label>
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Nút bấm.</h3>
+    <p>"input type="button"định nghĩa một nút bấm thông thường. Nút bấm có thể được lập trình để thực hiện một hành động khi người dùng nhấp vào nó:</p>
+    <input type="button" onclick="alert('Hello World!')" value="Click Me!">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Chọn màu sắc.</h3>
+    <p>"input type="color"định nghĩa một bộ chọn màu cho phép người dùng chọn một màu từ bảng màu:</p>  
+  <label for="favcolor">Select your favorite color:</label>
+  <input type="color" id="favcolor" name="favcolor">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Chọn ngày tháng.</h3>
+    <p>"input type="date"định nghĩa một trường chọn ngày cho phép người dùng chọn một ngày từ trình chọn ngày:</p>  
+  <label for="birthday">Ngày tháng năm:</label>
+  <input type="date" id="birthday" name="birthday">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Chọn ngày và giờ.</h3>
+    <p>"input type="datetime-local"định nghĩa một trường chọn ngày và giờ cho phép người dùng chọn cả ngày và giờ từ trình chọn ngày và giờ:</p>
+  <label for="birthdaytime">Birthday (date and time):</label>
+  <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Nhập email.</h3>
+    <p>"input type="email"định nghĩa một trường nhập email. Trình duyệt sẽ kiểm tra xem địa chỉ email có hợp lệ hay không khi biểu mẫu được gửi:</p>
+  <label for="email">Enter your email:</label>
+  <input type="email" id="email" name="email">
+</form>
+<br>
+<form action="/action_page.php" style=" width: 500px; height: 200px; border: 1px solid black;">
+    <h3>Loại đầu vào: Hình ảnh làm nút gửi.</h3>
+    <p>"input type="image"định nghĩa một hình ảnh làm nút gửi. Khi người dùng nhấp vào hình ảnh, biểu mẫu sẽ được gửi giống như khi nhấp vào nút gửi thông thường:</p>
+<input type="image" src="img_submit.gif" alt="Submit" width="48" height="48">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Tệp tin.</h3>
+    <p>"input type="file"định nghĩa một trường chọn tệp cho phép người dùng chọn một hoặc nhiều tệp từ thiết bị của họ để tải lên:</p>
+  <label for="myfile">Select a file:</label>
+  <input type="file" id="myfile" name="myfile">
+</form>
+<br>
+<form action="/action_page.php" style=" width: 500px; height: 200px; border: 1px solid black;">
+    <h3>Loại đầu vào: Ẩn.</h3>
+    <p>"input type="hidden"định nghĩa một trường ẩn không hiển thị trên trang web nhưng vẫn gửi dữ liệu khi biểu mẫu được gửi:</p>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <input type="hidden" id="custId" name="custId" value="3487">
+  <input type="submit" value="Submit">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Tháng </h3>
+    <p>Tính năng này "input type="month" cho phép người dùng chọn tháng và năm.</p>
+  <label for="bdaymonth">Birthday (month and year):</label>
+  <input type="month" id="bdaymonth" name="bdaymonth">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Số</h3>
+    <p>"input type="number"định nghĩa một trường nhập số. Bạn có thể sử dụng các thuộc tính min và max để đặt giới hạn cho giá trị số:</p>
+  <label for="quantity">Quantity (between 1 and 5):</label>
+  <input type="number" id="quantity" name="quantity" min="1" max="6">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3> Số với bước nhảy.</h3>
+    <p>"input type="number"định nghĩa một trường nhập số với bước nhảy được chỉ định bởi thuộc tính step:</p>
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" name="quantity" min="0" max="100" step="5" value="30">
+</form>
+<br>
+<form  style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3> Phạm vi loại đầu vào (Thanh trượt).</h3>
+    <p>"input type="range"định nghĩa một thanh trượt để chọn một giá trị trong một phạm vi xác định bởi các thuộc tính min và max:</p>
+  <label for="vol">Volume (between 0 and 50):</label>
+  <input type="range" id="vol" name="vol" min="0" max="50">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Tìm kiếm theo kiểu nhập liệu .</h3>
+    <p>"input type="search"định nghĩa một trường nhập liệu tìm kiếm:</p>
+  <label for="gsearch">Search Google:</label>
+  <input type="search" id="gsearch" name="gsearch">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Số điện thoại.</h3>
+    <p>"input type="tel"định nghĩa một trường nhập số điện thoại. Bạn có thể sử dụng thuộc tính pattern để chỉ định định dạng mong muốn cho số điện thoại:</p>
+  <label for="phone">Enter your phone number:</label>
+  <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Thời gian.</h3>
+    <p>"input type="time"định nghĩa một trường chọn thời gian cho phép người dùng chọn một thời gian cụ thể:</p>
+  <label for="appt">Select a time:</label>
+  <input type="time" id="appt" name="appt">
+</form>
+<br>
+<form style=" width: 500px; height: 150px; border: 1px solid black;">
+    <h3>Loại đầu vào: Tuần.</h3>
+    <p>"input type="week"định nghĩa một trường chọn tuần cho phép người dùng chọn một tuần cụ thể trong năm:</p>
+  <label for="week">Select a week:</label>
+  <input type="week" id="week" name="week">
+</form>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Button Demo</title>
+    <style>
+        /* CSS cho button */
+        .mytestbtn {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .mytestbtn:hover {
+            background-color: darkgreen;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Lê Văn Ngọc - 2221050690</h1>
+    <h2>1. Button cơ bản</h2>
+    <button>Click Me</button>
+
+    <h2>2. Button có CSS</h2>
+    <button class="mytestbtn">Green Button</button>
+
+    <h2>3. Button bị vô hiệu hóa (disabled)</h2>
+    <button disabled>Disabled Button</button>
+
+    <h2>4. Button với JavaScript</h2>
+    <button onclick="alert('Hello!')">Click Me</button>
+
+    <h2>5. Các loại Button</h2>
+    <button type="button">Normal Button</button>
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+
+    <h2>6. Button trong Form</h2>
+    <form action="/action_page.php">
+        First name:
+        <input type="text" name="fname">
+        <br><br>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset Form</button>
+    </form>
+
+</body>
+</html>

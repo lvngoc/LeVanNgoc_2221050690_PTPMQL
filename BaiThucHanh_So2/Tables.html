@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tables</title>
+</head>
+<body>
+    <h1>Lê Văn Ngọc/2221050690</h1>
+    <h2>Bảng trong HTML</h2>
+    <p>Bảng trong HTML được tạo bằng các thẻ như <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code>, và <code>&lt;td&gt;</code>.</p>
+
+    <table border="1">
+        <tr>
+            <th>Tên</th>
+            <th>Độ tuổi</th>
+        </tr>
+        <tr>
+            <td>Ngọc</td>
+            <td>22</td>
+        </tr>
+    </table>
+
+    <h2>Thuộc tính border</h2>
+    <p>Thuộc tính border xác định đường viền của bảng.</p>
+
+    <table border="2">
+        <tr>
+            <th>Tên</th>
+            <th>Độ tuổi</th>
+        </tr>
+        <tr>
+            <td>Ngọc</td>
+            <td>20</td>
+        </tr>
+    </table>
+
+    <h2>Thuộc tính cellpadding và cellspacing</h2>
+    <p>Thuộc tính cellpadding xác định khoảng cách giữa nội dung ô và đường viền, còn cellspacing xác định khoảng cách giữa các ô.</p>
+
+    <table border="1" cellpadding="10" cellspacing="5">
+        <tr>
+            <th>Tên</th>
+            <th>Độ tuổi</th>
+        </tr>
+        <tr>
+            <td>Ngọc</td>
+            <td>22</td>
+        </tr>
+    </table>
+
+    <h2> Tiêu đề bảng </h2>
+    <p>Bạn có thể sử dụng thẻ <code>&lt;caption&gt;</code> để thêm tiêu đề cho bảng.</p>
+    <table border="1">
+        <caption>Thông tin cá nhân</caption>
+        <tr>
+            <th>Tên</th>
+            <th>Độ tuổi</th>
+        </tr>
+        <tr>
+            <td>Ngọc</td>
+            <td>22</td>
+        </tr>
+    </table>
+
+    <h2>Bảng HTML - Sọc ngựa vằn</h2>
+    <p>Bạn có thể sử dụng CSS để tạo sọc ngựa vằn cho bảng.</p>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        tr:nth-child(even) {
+            background-color: #b77f7f;
+        }
+    </style>
+    <table border="1">
+        <tr>
+            <th>Tên</th>
+            <th>Độ tuổi</th>
+        </tr>
+        <tr>
+            <td>Ngọc</td>
+            <td>22</td>
+        </tr>
+    </table>
+
+</body>
+</html>

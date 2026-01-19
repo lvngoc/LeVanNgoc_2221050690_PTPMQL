@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input form* Attributes</title>
+</head>
+<body>
+    <h2>LeVanNgoc_2221050690</h2>
+    <h3>HTML Input form* Attributes</h3>
+    <form action="/action_page.php" id="form1" style=" width: 500px; height: 180px; border: 1px solid black;" >
+        <h3>Thuộc tính form</h3>
+        <p>Thuộc tính "input form" chỉ định trường nhập liệu thuộc về form nào</p>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <input type="submit" value="Submit">
+</form>
+<label for="lname">Last name:</label>
+<input type="text" id="lname" name="lname" form="form1">
+<br><br>
+<form action="/action_page.php" style=" width: 500px; height: 220px; border: 1px solid black;" >
+    <h3>Thuộc tính formaction</h3>
+    <p>Thuộc tính "input formaction" chỉ định URL để gửi biểu mẫu khi nhấp vào nút gửi cụ thể này, ghi đè thuộc tính hành động của biểu mẫu</p>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+  <input type="submit" value="Submit">
+  <input type="submit" formaction="/action_page2.php" value="Submit as Admin">
+</form>
+<br>
+<form action="/action_page_binary.asp" method="post" enctype="application/x-www-form-urlencoded" style=" width: 500px; height: 200px; border: 1px solid black;" >
+    <h3>Thuộc tính formenctype</h3>
+    <p>Thuộc tính "input formenctype" chỉ định cách mã hóa dữ liệu biểu mẫu khi gửi biểu mẫu qua nút gửi cụ thể này, ghi đè thuộc tính enctype của biểu mẫu</p>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <input type="submit" value="Submit">
+  <input type="submit" formenctype="multipart/form-data"
+  value="Submit as Multipart/form-data">
+</form>
+<br>
+<form action="/action_page.php" method="get" style=" width: 500px; height: 220px; border: 1px solid black;" >
+    <h3>Thuộc tính formmethod</h3>
+    <p>Thuộc tính "input formmethod" chỉ định phương thức HTTP để gửi biểu mẫu khi nhấp vào nút gửi cụ thể này, ghi đè thuộc tính method của biểu mẫu</p>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+  <input type="submit" value="Submit using GET">
+  <input type="submit" formmethod="post" value="Submit using POST">
+</form>
+<br>
+<form action="/action_page.php" style=" width: 500px; height: 250px; border: 1px solid black;" >
+    <h3>Thuộc tính formtarget</h3>
+    <p>Thuộc tính "input formtarget" chỉ định nơi để hiển thị tài liệu được gửi khi nhấp vào nút gửi cụ thể này, ghi đè thuộc tính target của biểu mẫu</p>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+  <input type="submit" value="Submit">
+  <input type="submit" formtarget="_blank" value="Submit to a new window/tab">
+</form>
+<br>
+<form action="/action_page.php" style=" width: 500px; height: 220px; border: 1px solid black;" >
+    <h3>Thuộc tính formnovalidate</h3>
+    <p>Thuộc tính "input formnovalidate" chỉ định rằng biểu mẫu không được xác thực khi gửi biểu mẫu qua nút gửi cụ thể này, ghi đè thuộc tính novalidate của biểu mẫu</p>
+  <label for="email">Enter your email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <input type="submit" value="Submit">
+  <input type="submit" formnovalidate="formnovalidate"
+  value="Submit without validation">
+</form>
+<br>
+<form action="/action_page.php" novalidate style=" width: 500px; height: 180px; border: 1px solid black;" >
+    <h3>Thuộc tính novalidate của form</h3>
+    <p>Thuộc tính "form novalidate" chỉ định rằng biểu mẫu không được xác thực khi gửi biểu mẫu</p>
+  <label for="email">Enter your email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
