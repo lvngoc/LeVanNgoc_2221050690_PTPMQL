@@ -1,0 +1,21 @@
+@model FirstWebMVC.Models.Entities.Student
+
+<h2>Edit Student</h2>
+
+<form method="post">
+
+<input type="hidden" name="Id" value="@Model.Id"/>
+
+Student Code
+<input type="text" name="StudentCode" value="@Model.StudentCode"/>
+
+<br>
+
+Full Name
+<input type="text" name="FullName" value="@Model.FullName"/>
+
+<br>
+
+<button type="submit">Update</button>
+
+</form>

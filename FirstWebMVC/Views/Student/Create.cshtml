@@ -1,0 +1,25 @@
+@model FirstWebMVC.Models.Entities.Student
+
+<h2>Thêm sinh viên</h2>
+
+<form asp-action="Create" method="post">
+
+<div>
+    Student Code
+    <input asp-for="StudentCode" />
+    <span asp-validation-for="StudentCode" style="color:red"></span>
+</div>
+
+<br>
+
+<div>
+    Full Name
+    <input asp-for="FullName" />
+    <span asp-validation-for="FullName" style="color:red"></span>
+</div>
+
+<br>
+
+<button type="submit">Submit</button>
+
+</form>

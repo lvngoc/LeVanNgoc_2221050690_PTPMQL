@@ -10,14 +10,28 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstWebMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260303102746_Table_Student")]
-    partial class Table_Student
+    [Migration("20260310100649_CreateStudentTable")]
+    partial class CreateStudentTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
+
+            modelBuilder.Entity("FirstWebMVC.Models.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
 
             modelBuilder.Entity("FirstWebMVC.Models.Entities.Student", b =>
                 {

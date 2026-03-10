@@ -13,7 +13,5 @@ namespace FirstWebMVC.Data
 
         // Khai báo DbSet ở đây
         public DbSet<Student> Students { get; set; }
-
-        public DbSet<Product> Products { get; set; }
     }
 }
