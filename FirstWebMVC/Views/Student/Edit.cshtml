@@ -4,17 +4,24 @@
 
 <form method="post">
 
-<input type="hidden" name="Id" value="@Model.Id"/>
+<div class="form-group">
+    <label asp-for="StudentCode"></label>
+    <input asp-for="StudentCode" class="form-control" />
+    <span asp-validation-for="StudentCode" class="text-danger"></span>
+</div>
 
-Student Code
-<input type="text" name="StudentCode" value="@Model.StudentCode"/>
+<div class="form-group">
+    <label asp-for="FullName"></label>
+    <input asp-for="FullName" class="form-control" />
+    <span asp-validation-for="FullName" class="text-danger"></span>
+</div>
 
-<br>
-
-Full Name
-<input type="text" name="FullName" value="@Model.FullName"/>
-
-<br>
+<div class="form-group">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+<br /><br />
 
 <button type="submit">Update</button>
 

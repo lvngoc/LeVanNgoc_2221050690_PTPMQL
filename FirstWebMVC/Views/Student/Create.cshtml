@@ -4,18 +4,22 @@
 
 <form asp-action="Create" method="post">
 
-<div>
-    Student Code
-    <input asp-for="StudentCode" />
-    <span asp-validation-for="StudentCode" style="color:red"></span>
+<div class="form-group">
+    <label asp-for="StudentCode"></label>
+    <input asp-for="StudentCode" class="form-control" />
+    <span asp-validation-for="StudentCode" class="text-danger"></span>
 </div>
 
-<br>
+<div class="form-group">
+    <label asp-for="FullName"></label>
+    <input asp-for="FullName" class="form-control" />
+    <span asp-validation-for="FullName" class="text-danger"></span>
+</div>
 
-<div>
-    Full Name
-    <input asp-for="FullName" />
-    <span asp-validation-for="FullName" style="color:red"></span>
+<div class="form-group">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
 </div>
 
 <br>
@@ -23,3 +27,7 @@
 <button type="submit">Submit</button>
 
 </form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}

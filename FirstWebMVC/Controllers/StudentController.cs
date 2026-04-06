@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FirstWebMVC.Data;
 using FirstWebMVC.Models.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace FirstWebMVC.Controllers
 {
@@ -16,11 +15,26 @@ namespace FirstWebMVC.Controllers
         }
 
         // READ - Hiển thị danh sách sinh viên
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
+{
+    var students = await _context.Students.ToListAsync();
+
+    if (!string.IsNullOrEmpty(searchString))
+    {
+        students = students.Where(s =>
+            s.StudentCode == searchString ||
+            s.FullName == searchString)
+            .ToList();
+
+        if (!students.Any())
         {
-            var students = await _context.Students.ToListAsync();
-            return View(students);
+            ViewBag.Message = "Không tìm thấy sinh viên bạn cần tìm!";
+            return View("NotFound");
         }
+    }
+
+    return View(students);
+}
 
         // ================= CREATE =================
 
@@ -33,17 +47,26 @@ namespace FirstWebMVC.Controllers
         // Nhận dữ liệu từ form
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Student student)
+        public async Task<IActionResult> Create(Student student)
         {
             if (ModelState.IsValid)
             {
-                _context.Students.Add(student);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        var existingStudent = await _context.Students
+            .FirstOrDefaultAsync(s => s.StudentCode == student.StudentCode);
 
-            return View(student);
+        if (existingStudent != null)
+        {
+            ViewBag.Message = "Mã sinh viên đã tồn tại trước đó!";
+            return View("NotFound");
         }
+
+        _context.Add(student);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Index));
+    }
+
+    return View(student);
+}
 
         // ================= UPDATE =================
 
@@ -65,15 +88,24 @@ namespace FirstWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Student student)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Students.Update(student);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
+    if (ModelState.IsValid)
+    {
+        var existingStudent = _context.Students
+            .FirstOrDefault(s => s.StudentCode == student.StudentCode && s.Id != student.Id);
 
-            return View(student);
+        if (existingStudent != null)
+        {
+            ViewBag.Message = "Mã sinh viên đã tồn tại ở sinh viên khác!";
+            return View("NotFound");
         }
+
+        _context.Students.Update(student);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+
+    return View(student);
+    }
 
         // ================= DELETE =================
 
@@ -81,29 +113,27 @@ namespace FirstWebMVC.Controllers
         public IActionResult Delete(int id)
         {
             var student = _context.Students.FirstOrDefault(s => s.Id == id);
-
             if (student == null)
             {
-                return NotFound();
-            }
-
-            return View(student);
-        }
-
-        // Xác nhận xoá
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            var student = _context.Students.Find(id);
-
-            if (student != null)
+                ViewBag.Message = "Không tìm thấy sinh viên để xoá!";
+                return View("NotFound");
+                }
+                return View(student);
+}
+                
+                // POST: Xác nhận xoá
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+            public IActionResult DeleteConfirmed(int id)
             {
-                _context.Students.Remove(student);
-                _context.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-        }
-    }
+                var student = _context.Students.Find(id);
+                if (student != null)
+                {
+                    _context.Students.Remove(student);
+                    _context.SaveChanges();
+                    }
+                    
+                    return RedirectToAction(nameof(Index));
+                    }
+                }
 }
