@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using FirstWebMVC.Data;
 using FirstWebMVC.Models.Entities;
+using FirstWebMVC.Models.ViewModels;
 
 namespace FirstWebMVC.Controllers
 {
@@ -14,126 +16,148 @@ namespace FirstWebMVC.Controllers
             _context = context;
         }
 
-        // READ - Hiển thị danh sách sinh viên
+        // ================= READ =================
         public async Task<IActionResult> Index(string searchString)
-{
-    var students = await _context.Students.ToListAsync();
-
-    if (!string.IsNullOrEmpty(searchString))
-    {
-        students = students.Where(s =>
-            s.StudentCode == searchString ||
-            s.FullName == searchString)
-            .ToList();
-
-        if (!students.Any())
         {
-            ViewBag.Message = "Không tìm thấy sinh viên bạn cần tìm!";
-            return View("NotFound");
-        }
-    }
+            var students = await _context.Students
+                .Include(s => s.Faculty)
+                .Select(s => new StudentVM
+                {
+                    Id = s.Id,
+                    StudentCode = s.StudentCode,
+                    FullName = s.FullName,
+                    Email = s.Email,
+                    FacultyName = s.Faculty!.FacultyName
+                })
+                .ToListAsync();
 
-    return View(students);
-}
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s =>
+                    s.StudentCode == searchString ||
+                    s.FullName == searchString)
+                    .ToList();
+
+                if (!students.Any())
+                {
+                    ViewBag.Message = "Không tìm thấy sinh viên bạn cần tìm!";
+                    return View("NotFound");
+                }
+            }
+
+            return View(students);
+        }
 
         // ================= CREATE =================
-
-        // Hiển thị form thêm sinh viên
         public IActionResult Create()
         {
+            LoadFaculties();
             return View();
         }
 
-        // Nhận dữ liệu từ form
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Student student)
         {
             if (ModelState.IsValid)
             {
-        var existingStudent = await _context.Students
-            .FirstOrDefaultAsync(s => s.StudentCode == student.StudentCode);
+                var existingStudent = await _context.Students
+                    .FirstOrDefaultAsync(s => s.StudentCode == student.StudentCode);
 
-        if (existingStudent != null)
-        {
-            ViewBag.Message = "Mã sinh viên đã tồn tại trước đó!";
-            return View("NotFound");
+                if (existingStudent != null)
+                {
+                    ViewBag.Message = "Mã sinh viên đã tồn tại trước đó!";
+                    return View("NotFound");
+                }
+
+                _context.Add(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            LoadFaculties();
+            return View(student);
         }
 
-        _context.Add(student);
-        await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(Index));
-    }
-
-    return View(student);
-}
-
-        // ================= UPDATE =================
-
-        // Hiển thị form chỉnh sửa
+        // ================= EDIT =================
         public IActionResult Edit(int id)
         {
             var student = _context.Students.Find(id);
 
             if (student == null)
             {
-                return NotFound();
+                ViewBag.Message = "Không tìm thấy sinh viên!";
+                return View("NotFound");
+            }
+
+            LoadFaculties();
+            return View(student);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingStudent = _context.Students
+                    .FirstOrDefault(s => s.StudentCode == student.StudentCode && s.Id != student.Id);
+
+                if (existingStudent != null)
+                {
+                    ViewBag.Message = "Mã sinh viên đã tồn tại ở sinh viên khác!";
+                    return View("NotFound");
+                }
+
+                _context.Students.Update(student);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+
+            LoadFaculties();
+            return View(student);
+        }
+
+        // ================= DELETE =================
+        public IActionResult Delete(int id)
+        {
+            var student = _context.Students
+                .Include(s => s.Faculty)
+                .FirstOrDefault(s => s.Id == id);
+
+            if (student == null)
+            {
+                ViewBag.Message = "Không tìm thấy sinh viên để xoá!";
+                return View("NotFound");
             }
 
             return View(student);
         }
 
-        // Lưu dữ liệu chỉnh sửa
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Student student)
+        public IActionResult DeleteConfirmed(int id)
         {
-    if (ModelState.IsValid)
-    {
-        var existingStudent = _context.Students
-            .FirstOrDefault(s => s.StudentCode == student.StudentCode && s.Id != student.Id);
+            var student = _context.Students.Find(id);
 
-        if (existingStudent != null)
-        {
-            ViewBag.Message = "Mã sinh viên đã tồn tại ở sinh viên khác!";
-            return View("NotFound");
+            if (student != null)
+            {
+                _context.Students.Remove(student);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        _context.Students.Update(student);
-        _context.SaveChanges();
-        return RedirectToAction(nameof(Index));
-    }
-
-    return View(student);
-    }
-
-        // ================= DELETE =================
-
-        // Hiển thị xác nhận xoá
-        public IActionResult Delete(int id)
+        // ================= HELPER =================
+        private void LoadFaculties()
         {
-            var student = _context.Students.FirstOrDefault(s => s.Id == id);
-            if (student == null)
-            {
-                ViewBag.Message = "Không tìm thấy sinh viên để xoá!";
-                return View("NotFound");
-                }
-                return View(student);
-}
-                
-                // POST: Xác nhận xoá
-            [HttpPost, ActionName("Delete")]
-            [ValidateAntiForgeryToken]
-            public IActionResult DeleteConfirmed(int id)
-            {
-                var student = _context.Students.Find(id);
-                if (student != null)
+            ViewBag.Faculties = _context.Faculties
+                .Select(f => new SelectListItem
                 {
-                    _context.Students.Remove(student);
-                    _context.SaveChanges();
-                    }
-                    
-                    return RedirectToAction(nameof(Index));
-                    }
-                }
+                    Value = f.Id.ToString(),
+                    Text = f.FacultyName
+                }).ToList();
+        }
+    }
 }

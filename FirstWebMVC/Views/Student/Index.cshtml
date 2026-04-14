@@ -1,6 +1,7 @@
-@model List<FirstWebMVC.Models.Entities.Student>
+@model List<FirstWebMVC.Models.ViewModels.StudentVM>
 
-<h2>Danh sach Sinh vien</h2> 
+<h2>Danh sách Sinh viên</h2>
+
 <button type="button" class="btn btn-info mb-3" onclick="showSearch()">
     Tìm kiếm
 </button>
@@ -21,17 +22,20 @@
 
 <table class="table table-bordered">
     <tr>
-        <th>Ma SV</th>
-        <th>Ho Ten SV</th>
+        <th>Mã SV</th>
+        <th>Họ tên SV</th>
         <th>Email</th>
+        <th>Khoa</th> 
         <th>Actions</th>
     </tr>
+
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.StudentCode</td>
             <td>@item.FullName</td>
             <td>@item.Email</td>
+            <td>@item.FacultyName</td> 
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
@@ -39,12 +43,11 @@
         </tr>
     }
 </table>
-<a asp-controller="Student"
-   asp-action="Create"
-   class="btn btn-primary"
-   style="margin-bottom: 10px;">
+
+<a asp-action="Create" class="btn btn-primary">
     Thêm sinh viên
-</a>   
+</a>
+
 <script>
     function showSearch() {
         var box = document.getElementById("searchBox");
