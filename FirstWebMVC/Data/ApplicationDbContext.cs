@@ -24,5 +24,9 @@ namespace FirstWebMVC.Data
                 new Faculty { Id = 4, FacultyName = "Xây dựng" }
             );
         }
+        public DbSet<FirstWebMVC.Models.Entities.Customer> Customer { get; set; } = default!;
+        public DbSet<FirstWebMVC.Models.Entities.Product> Product { get; set; } = default!;
+        public DbSet<FirstWebMVC.Models.Entities.Order> Order { get; set; } = default!;
+        public DbSet<FirstWebMVC.Models.Entities.OrderDetail> OrderDetail { get; set; } = default!;
     }
 }
