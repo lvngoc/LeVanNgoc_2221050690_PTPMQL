@@ -1,3 +1,4 @@
+using OfficeOpenXml;
 using FirstWebMVC.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+ExcelPackage.License.SetNonCommercialPersonal("StudentProject");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

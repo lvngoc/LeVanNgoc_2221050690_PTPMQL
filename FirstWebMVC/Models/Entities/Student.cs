@@ -18,7 +18,7 @@ namespace FirstWebMVC.Models.Entities
         [EmailAddress(ErrorMessage = "Email không đúng định dạng")]
         public string Email { get; set; } = "";
 
-        // ✅ BẮT BUỘC PHẢI CÓ
+
         public int FacultyId { get; set; }
         public Faculty? Faculty { get; set; }
     }

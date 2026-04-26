@@ -19,6 +19,15 @@
         </button>
     </form>
 </div>
+<h3>Import Excel</h3>
+
+<form asp-action="Import" method="post" enctype="multipart/form-data" class="mb-3">
+    <input type="file" name="file" class="form-control" style="width:300px; display:inline-block;" />
+
+    <button type="submit" class="btn btn-success">
+        Import Excel
+    </button>
+</form>
 
 <table class="table table-bordered">
     <tr>

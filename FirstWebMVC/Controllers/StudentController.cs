@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OfficeOpenXml;
 using FirstWebMVC.Data;
 using FirstWebMVC.Models.Entities;
 using FirstWebMVC.Models.ViewModels;
@@ -158,6 +159,82 @@ namespace FirstWebMVC.Controllers
                     Value = f.Id.ToString(),
                     Text = f.FacultyName
                 }).ToList();
+        }
+
+        // ================= IMPORT EXCEL =================
+
+        public IActionResult Import()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Import(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                ViewBag.Message = "Vui lòng chọn file Excel!";
+                return View();
+            }
+
+            int success = 0;
+            string error = "";
+
+            using (var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+
+                using (var package = new ExcelPackage(stream))
+                {
+                    var ws = package.Workbook.Worksheets[0];
+                    int rowCount = ws.Dimension.Rows;
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        string code = ws.Cells[row, 1].Value?.ToString()?.Trim();
+                        string name = ws.Cells[row, 2].Value?.ToString()?.Trim();
+                        string email = ws.Cells[row, 3].Value?.ToString()?.Trim();
+                        string facultyName = ws.Cells[row, 4].Value?.ToString()?.Trim();
+
+                        if (string.IsNullOrEmpty(code))
+                            continue;
+
+                        var exist = await _context.Students
+                            .FirstOrDefaultAsync(s => s.StudentCode == code);
+
+                        if (exist != null)
+                        {
+                            error += $"Dòng {row}: trùng mã {code}<br/>";
+                            continue;
+                        }
+
+                        var faculty = await _context.Faculties
+                            .FirstOrDefaultAsync(f => f.FacultyName == facultyName);
+
+                        if (faculty == null)
+                        {
+                            error += $"Dòng {row}: không tìm thấy khoa {facultyName}<br/>";
+                            continue;
+                        }
+
+                        var student = new Student
+                        {
+                            StudentCode = code,
+                            FullName = name,
+                            Email = email,
+                            FacultyId = faculty.Id
+                        };
+
+                        _context.Students.Add(student);
+                        success++;
+                    }
+
+                    await _context.SaveChangesAsync();
+                }
+            }
+
+            ViewBag.Message = $"Import thành công: {success} sinh viên<br/>" + error;
+            return View();
         }
     }
 }
